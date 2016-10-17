@@ -1,8 +1,8 @@
 
-/**
+/*
  * CS 2852 - 021
  * Spring 2016
- * Lab 2 - Connect the Dots Generator
+ * Lab 3 - Connect the Dots Generator Revisited
  * Name: Kyra Oberholtzer
  * Date: 3/15/2016
  */
@@ -37,7 +37,7 @@ public class Driver extends JFrame {
         Creates the buttons, labels, and the textField
         Only instantiates the textField
         */
-        JButton select, dots, lines, both;
+        JButton select, dots, lines, both, time;
         JLabel orginalPoints, finalPoints;
         JTextField finalNumPoints = new JTextField();
 
@@ -65,9 +65,8 @@ public class Driver extends JFrame {
 
                 int returnValue = jfc.showOpenDialog(null);
 
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                if (returnValue == JFileChooser.APPROVE_OPTION)
                     path = jfc.getSelectedFile().toPath();
-                }
 
                 //Sets the file object to the selected file
                 file = path.toFile();
@@ -177,20 +176,40 @@ public class Driver extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //User input check
-                if(finalNumPoints != null) {
+                if (finalNumPoints != null) {
                     //Converts input to an int
                     int numPoints = Integer.parseInt(finalNumPoints.getText());
                     //Calls to plot desired number of dots and lines
                     newFile.plotBoth(numPoints);
                     repaint();
-                }
-                else{
+                } else {
                     //Calls to plot original number of lines
                     newFile.plotBoth(points);
                     repaint();
                 }
             }
         });
+
+        //Instantiates the Both! button to plot the desired amount of dots and lines on click
+        time = new JButton("Time!");
+        time.addActionListener(new ActionListener() {
+            /**
+             * Private inner class of the Time! button ActionListener's actionPerformed method.
+             * Waits for the button to be clicked.
+             * </br>
+             * @param e clicking of the Time! button
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int numPoints = Integer.parseInt(finalNumPoints.getText());
+                    newFile.getBenchmarking(numPoints);
+                }catch(NumberFormatException exception){
+                    JOptionPane.showMessageDialog(null, "Please input a desired number of dots.");
+                }
+            }
+        });
+
 
         //Creates a layout to be added to the JFrame containing the Dots! and Lines! buttons
         GridLayout buttonLayout = new GridLayout(1, 2);
@@ -201,7 +220,12 @@ public class Driver extends JFrame {
         //Add the two panels and the Both! button to the JFrame
         add(panel1, BorderLayout.NORTH);
         add(panel2, BorderLayout.CENTER);
-        add(both, BorderLayout.SOUTH);
+
+        JPanel panel3 = new JPanel();
+        panel3.setLayout(new GridLayout(1,2));
+        panel3.add(both);
+        panel3.add(time);
+        add(panel3, BorderLayout.SOUTH);
 
 
 

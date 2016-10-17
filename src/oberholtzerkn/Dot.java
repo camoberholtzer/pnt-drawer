@@ -1,8 +1,8 @@
 
-/**
+/*
  * CS 2852 - 021
  * Spring 2016
- * Lab 2 - Connect the Dots Generator
+ * Lab 3 - Connect the Dots Generator Revisited
  * Name: Kyra Oberholtzer
  * Date: 3/15/2016
  */
@@ -12,15 +12,14 @@ package oberholtzerkn;
 public class Dot {
 
     //Creates the x and y coordinate objects of the dot
-    private final double X;
-    private final double Y;
+    private double x, y;
 
     /**
      * Getter for the x coordinate of the current Dot object
      * @return the x coordinate of the current Dot object
      */
     public double getX(){
-        return X;
+        return x;
     }
 
     /**
@@ -28,7 +27,7 @@ public class Dot {
      * @return the y coordinate of the current Dot object
      */
     public double getY(){
-        return Y;
+        return y;
     }
 
     /**
@@ -41,8 +40,8 @@ public class Dot {
      */
     public Dot (double x, double y){
         //Sets x to the x parameter
-        X = x;
+        this.x = x;
         //Sets y to the y parameter
-        Y = y;
+        this.y = y;
     }
 }
