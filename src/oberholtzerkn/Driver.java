@@ -100,18 +100,21 @@ public class Driver extends JFrame {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                //User input check
-                if(finalNumPoints != null) {
-                    //Converts input to an int
-                    int numPoints = Integer.parseInt(finalNumPoints.getText());
-                    //Calls to plot desired number of dots
-                    newFile.plotDots(numPoints);
-                    repaint();
-                }
-                else{
-                    //Calls to plot original number of dots
-                    newFile.plotDots(points);
-                    repaint();
+                try {
+                    //User input check
+                    if (finalNumPoints != null) {
+                        //Converts input to an int
+                        int numPoints = Integer.parseInt(finalNumPoints.getText());
+                        //Calls to plot desired number of dots
+                        newFile.plotDots(numPoints);
+                        repaint();
+                    } else {
+                        //Calls to plot original number of dots
+                        newFile.plotDots(points);
+                        repaint();
+                    }
+                } catch (IllegalArgumentException exc) {
+                    JOptionPane.showMessageDialog(null, exc.getMessage());
                 }
             }
         });
@@ -130,18 +133,22 @@ public class Driver extends JFrame {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                //User input check
-                if(finalNumPoints != null) {
-                    //Converts input to an int
-                    int numPoints = Integer.parseInt(finalNumPoints.getText());
-                    //Calls to plot desired number of lines
-                    newFile.plotLines(numPoints);
-                    repaint();
-                }
-                else{
-                    //Calls to plot original number of lines
-                    newFile.plotLines(points);
-                    repaint();
+                try {
+                    //User input check
+                    if (finalNumPoints != null) {
+                        //Converts input to an int
+                        int numPoints = Integer.parseInt(finalNumPoints.getText());
+                        //Calls to plot desired number of lines
+                        newFile.plotLines(numPoints);
+                        repaint();
+
+                    } else {
+                        //Calls to plot original number of lines
+                        newFile.plotLines(points);
+                        repaint();
+                    }
+                } catch (IllegalArgumentException exc) {
+                    JOptionPane.showMessageDialog(null, exc.getMessage());
                 }
             }
         });
@@ -176,16 +183,20 @@ public class Driver extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //User input check
-                if (finalNumPoints != null) {
-                    //Converts input to an int
-                    int numPoints = Integer.parseInt(finalNumPoints.getText());
-                    //Calls to plot desired number of dots and lines
-                    newFile.plotBoth(numPoints);
-                    repaint();
-                } else {
-                    //Calls to plot original number of lines
-                    newFile.plotBoth(points);
-                    repaint();
+                try{
+                    if (finalNumPoints != null) {
+                        //Converts input to an int
+                        int numPoints = Integer.parseInt(finalNumPoints.getText());
+                        //Calls to plot desired number of dots and lines
+                        newFile.plotBoth(numPoints);
+                        repaint();
+                    } else {
+                        //Calls to plot original number of lines
+                        newFile.plotBoth(points);
+                        repaint();
+                    }
+                } catch (IllegalArgumentException exc) {
+                    JOptionPane.showMessageDialog(null, exc.getMessage());
                 }
             }
         });

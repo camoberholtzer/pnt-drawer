@@ -220,7 +220,7 @@ public class ReadFile extends WinPlotter{
      * Executes both the plotDots and plotLines methods
      * @param numPoints the number of points the user wants in the picture
      */
-    public void plotBoth(int numPoints) {
+    public void plotBoth(int numPoints) throws IllegalArgumentException{
         //resizes the window
         this.setWindowSize(1000, 1000);
         this.setPlotBoundaries(0, 0, 1.0, 1.0);
@@ -280,7 +280,7 @@ public class ReadFile extends WinPlotter{
      * array with the new dots and plots them using the WinPlotter drawPoint method.
      * @param numPoints number of points the user wants in the picture
      */
-    public void plotDots(int numPoints){
+    public void plotDots(int numPoints) throws IllegalArgumentException{
         //resizes the window
         this.setWindowSize(1000, 1000);
         this.setPlotBoundaries(0, 0, 1.0, 1.0);
@@ -315,7 +315,7 @@ public class ReadFile extends WinPlotter{
      * and drawTo methods.
      * @param numPoints number of points the user wants in the picture
      */
-    public void plotLines(int numPoints){
+    public void plotLines(int numPoints) throws IllegalArgumentException{
         //resizes the window
         this.setWindowSize(1000, 1000);
         this.setPlotBoundaries(0, 0, 1.0, 1.0);
@@ -456,14 +456,10 @@ public class ReadFile extends WinPlotter{
      * number of points the method throws and handles an IOException.
      * @return if the desired number of points is within the range
      */
-    public Boolean rangeCheck(int numPoints) {
+    public Boolean rangeCheck(int numPoints) throws IllegalArgumentException{
         if (numPoints > points.size() || numPoints < 2 || points.size() < 3) {
-            try {
-                throw new IllegalArgumentException("Number of points desired is greater than or less than the number of points in " +
+            throw new IllegalArgumentException("Number of points desired is greater than or less than the number of points in " +
                         "the file.");
-            } catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
         }
         return true;
     }
